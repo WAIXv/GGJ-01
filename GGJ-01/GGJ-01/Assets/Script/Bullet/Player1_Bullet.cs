@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player2_Bullet : MonoBehaviour
+public class Player1_Bullet : MonoBehaviour
 {
+    public float speed;
     public GameObject uiManager;
     public GameObject enemyHPManager;
+    public Rigidbody2D rig;
+    public Collider2D coll;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        rig = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
+        rig.velocity = Vector2.right * speed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         UIManager ui = uiManager.GetComponent<UIManager>();
@@ -25,23 +25,23 @@ public class Player2_Bullet : MonoBehaviour
 
         switch (collision.tag)
         {
-            case "Player1":
-                //1《-2
-                ui.player1_HPLoss();//扣血->死亡
-                Destroy(gameObject);
+            case "Player2":
+                //1-》2 1向2射击
+                ui.player2_HPLoss();//扣血->死亡
+                Destroy(gameObject);                
                 break;
 
 
             case "Enemy":
-                ui.player2_DefeatNumChange();//玩家2 杀敌数变化
+                ui.player1_DefeatNumChange();
                 enemyHP.EnemyHPLoss();//扣血->死亡
                 Destroy(gameObject);
                 break;
-
-            //碰到红色给1加血
-            case "RedLove":
-                collision.SendMessage("RedDisappear");//红心消失
-                ui.player1_HPIncrease();//玩家 1 加血
+            
+            //碰到蓝色给2加血
+            case "BlueLove":
+                collision.SendMessage("BlueDisappear");//蓝心消失
+                ui.player2_HPIncrease();
                 Destroy(gameObject);
                 break;
 
@@ -49,4 +49,5 @@ public class Player2_Bullet : MonoBehaviour
                 break;
         }
     }
+
 }

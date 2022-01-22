@@ -45,26 +45,26 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //≤‚ ‘
-        //if(Input.GetKeyDown(KeyCode.E))
-        //{
-        //    player1_HPLoss();
-        //}
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    player1_HPIncrease();
-        //}
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            player1_HPLoss();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            player1_HPIncrease();
+        }
 
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    player1_DefeatNumChange();
-        //}
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            player1_DefeatNumChange();
+        }
+
     }
 
-    
 
 
-    
+
+
 
 
 
@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
         if (player1_HP == 0 )
         {
 
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 
     }
